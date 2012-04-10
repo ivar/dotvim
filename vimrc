@@ -170,7 +170,7 @@ if has("autocmd")
   autocmd BufNewFile,BufRead Rakefile set filetype=ruby
 
   " Highlight over column 80
-  autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
+  "autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
 
   autocmd FocusGained * call s:UpdateNERDTree()
 
@@ -229,6 +229,13 @@ autocmd FileWritePre * :call TrimWhiteSpace()
 autocmd FileAppendPre * :call TrimWhiteSpace()
 autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
+
+set wildignore+=*.swp,*.bak,*.pyc,*.class,*.css "add to wildignore files
+set wig+=public/system/*,public/stylesheets/*,tmp/*,log/*,db/backups/*,public/store/*,public/product_files/*,public/product_images/*,public/product/*,public/banners/*,public/tenant/*
+
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
 " Include local vim config
 if filereadable(expand("~/.vimrc.local"))
